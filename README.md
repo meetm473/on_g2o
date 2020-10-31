@@ -1,13 +1,13 @@
 # on_g2o
 This package contains files to understand how to use the G2O library.
 
-## TODO
-- - [ ] Use `tutorial_slam2d` along with `python-helpers` 
-
-
-
-
-
+## TO-DO
+- [x] Use `tutorial_slam2d` along with `python-helpers`
+- [ ] Understand how to make 3D plots using `matplotlib`
+- [ ] Using `g2o` examples and define custom nodes and edges for VIMAN
+- [ ] Create a file to generate random data
+- [ ] Test the output for known correspondence
+- [ ] Integration with ROS
 
 ### FAQs
 

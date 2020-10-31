@@ -4,3 +4,4 @@
 \.vs
 \.vscode
 *.code-workspace
+\__pycache__
