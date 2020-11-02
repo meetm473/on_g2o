@@ -5,7 +5,7 @@ project(on_g2o)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 
 # Set header directory
-set(HEADER_DIR ${PROJECT_SOURCE_DIR}/include)
+set(HEADER_DIR ${PROJECT_SOURCE_DIR}/include ${G2O_INCLUDE_DIR})
 
 # Set directory to search for G2O and other solvers
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)

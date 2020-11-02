@@ -1,13 +1,18 @@
 # on_g2o
-This package contains files to understand how to use the G2O library.
+This package contains files to understand how to use the g2o library.
 
 ## TO-DO
 - [x] Use `tutorial_slam2d` along with `python-helpers`
-- [ ] Understand how to make 3D plots using `matplotlib`
-- [ ] Using `g2o` examples and define custom nodes and edges for VIMAN
+- [x] Understand how to make 3D plots using `matplotlib`
+- [x] Understand how to use `g2opy`
 - [ ] Create a file to generate random data
 - [ ] Test the output for known correspondence
 - [ ] Integration with ROS
+
+## Repositories referred
+1. [g2o][6]
+2. [g2opy][5]
+3. [GraphSLAM][7]
 
 ### FAQs
 
@@ -28,3 +33,7 @@ A: The official documentation is very good in itself. You may check out the link
 [1]: https://www.youtube.com/watch?v=Z0wELiinNVQ&list=PLZcI2rZdDGQrb4VjOoMm2-o7Fu_mvij8F&index=69
 [2]: https://www.youtube.com/watch?v=RyhOBY5qUQI
 [3]: https://www.youtube.com/watch?v=r2cyMQ5NB1o&list=PLgnQpQtFTOGQh_J16IMwDlji18SWQ2PZ6&index=4
+[4]: https://
+[5]: https://github.com/uoip/g2opy
+[6]: https://github.com/RainerKuemmerle/g2o
+[7]: https://github.com/francocurotto/GraphSLAM
