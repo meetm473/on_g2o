@@ -70,7 +70,7 @@ def plotResults(filename, figFilename, showFig = False):
 	ms = 8
 
 	# get variables from file
-	gtData = slamData(filename, "TUTORIAL_VERTEX_SE2", "TUTORIAL_VERTEX_POINT_XY")
+	gtData = slamData(filename, "VERTEX_SE2", "VERTEX_XY")
 
 	_,ax = plt.subplots()
 	rbt_path, = ax.plot(gtData.poseX, gtData.poseY, '.-', color = '#bbbbf9', linewidth = lw, markersize = ms, label='robot path')
