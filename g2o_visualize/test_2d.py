@@ -4,15 +4,16 @@ from visualize_tools import plot2
 from slam_tools import slamData2D, optimizeGraph
 
 def main():
-	inputFile = "data/gtPath.g2o"
-	outputFile = "data/gtPath_opt.g2o"
+	dirName = "data/"
+	inputFile = "sensorPath"
+	# inputFile = "gtPath"
 
-	optimizeGraph(inputFile,outputFile,10)
+	optimizeGraph(dirName+inputFile+".g2o",dirName+inputFile+"_opt.g2o",10)
 
 	print("Optimization finished")
 
-	gData = slamData2D(outputFile,"VERTEX_SE2","VERTEX_XY")
-	plot2(gData,"gtPath_opt")
+	gData = slamData2D(dirName+inputFile+"_opt.g2o","VERTEX_SE2","VERTEX_XY")
+	plot2(gData, inputFile+"_opt")
 
 if __name__ == "__main__":
 	main()

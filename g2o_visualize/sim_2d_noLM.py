@@ -9,17 +9,24 @@ import matplotlib.pyplot as plt
 from spatialmath import base as tr
 
 # VARS TO CUSTOMIZE
-edge_se2_info_matrixG = " 1 0 0 1 0 1\r\n" # ipxx ipxy ipxa ipyy ipya ipaa (ideal)
 transl_incre = 0.1		# units
 rot_incre = 10			# deg
-outputDir = "data"		# relative path (wrt dir this file's location)
-gtFilename = "gtPath"
-sensorFilename = "sensorPath"
+
+R = np.array([
+	[0.001,0,0],
+	[0,0.001,0],
+	[0,0,0.001]
+])						# covariance matrix of odometry - X Y THETA
+
+outputDir = "data"				# relative path (wrt dir this file's location)
+gtFilename = "gtPath"			# do not add extension
+sensorFilename = "sensorPath"	# do not add extension
 
 """ DO NOT MODIFY """
 # Transformation matrix: local to global
 T = np.eye(3)
 
+edge_se2_info_matrixG = " 1 0 0 1 0 1\r\n" # ipxx ipxy ipxa ipyy ipya ipaa (ideal)
 edge_se2_info_matrixS = " 1 0 0 1 0 1\r\n" # ipxx ipxy ipxa ipyy ipya ipaa (sensor)
 
 heading = 0				# to store the current heading wrt global frame
@@ -88,14 +95,26 @@ def sample_pose(trans_state, rot_state):
 	if rot_state:
 		r = np.radians(rot_state*rot_incre)
 		f_gt.write("EDGE_SE2 "+ str(pose_counter) + " " + str(pose_counter+1) + " 0 0 " + str(r) + edge_se2_info_matrixG)
+		r = r + np.random.normal(0,np.sqrt(R[2][2]))
+		f_sense.write("EDGE_SE2 "+ str(pose_counter) + " " + str(pose_counter+1) + " 0 0 " + str(r) + edge_se2_info_matrixS)
 	else:
 		t = trans_state*transl_incre
 		f_gt.write("EDGE_SE2 "+ str(pose_counter) + " " + str(pose_counter+1) + " "+ str(t) + " 0 0" + edge_se2_info_matrixG)
+		t = t + np.random.normal(0,np.sqrt(R[0][0]))
+		f_sense.write("EDGE_SE2 "+ str(pose_counter) + " " + str(pose_counter+1) + " "+ str(t) + " 0 0" + edge_se2_info_matrixS)
 	pose_counter = pose_counter + 1
 
-def file_setup():
-	global f_gt, f_sense
+def g2o_setup():
+	global f_gt, f_sense, R, edge_se2_info_matrixS
 
+	# build odometry's information matrix
+	I = np.linalg.inv(R)
+
+	# ipxx ipxy ipxa ipyy ipya ipaa 
+	edge_se2_info_matrixS = " "+ str(I[0][0]) + " " + str(I[0][1]) + " " + str(I[0][2]) + \
+							" " + str(I[1][1]) + " " + str(I[1][2]) + " " + str(I[2][2]) + "\r\n"
+
+	# fix the inital location
 	f_gt.write("VERTEX_SE2 0 0 0 0\r\n")
 	f_gt.write("FIX 0\r\n")
 
@@ -109,7 +128,7 @@ def main():
 	print('Welcome to 2D robot simulator')
 	help()
 
-	file_setup()
+	g2o_setup()
 
 	while True:
 		# ch = msvcrt.getwch() 			# uncomment this for windows

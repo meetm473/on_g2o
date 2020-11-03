@@ -8,8 +8,8 @@ This package contains files to understand how to use the g2o library.
 - [ ] Generate robot path (without landmarks)
 	- [x] Ground truth data generation (visualize in matplot)
 	- [x] Convert ground truth data into g2o format
-	- [ ] Generate sensor readings (visualize in matplot)
-	- [ ] Convert sensor data into g2o format
+	- [x] Generate sensor readings (visualize in matplot)
+	- [x] Convert sensor data into g2o format
 - [ ] Generate robot path (with landmarks)
 - [ ] Test the output for known correspondence
 - [ ] Integration with ROS
