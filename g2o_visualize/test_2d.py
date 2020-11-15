@@ -5,7 +5,7 @@ from slam_tools import slamData2D, optimizeGraph
 
 def main():
 	dirName = "data/"
-	inputFile = "sensorPath"
+	inputFile = "test_2"
 	# inputFile = "gtPath"
 
 	optimizeGraph(dirName+inputFile+".g2o",dirName+inputFile+"_opt.g2o",10)

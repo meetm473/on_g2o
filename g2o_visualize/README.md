@@ -41,3 +41,19 @@ To understand the implementation of goal[0], the robot is going to move around:
 3. After every sample, the graph is optimized. The optimized graph gives me `x, y, theta` wrt to global frame.
 
 The output of this algorithm is an `matplotlib.pyplot` showcasing the estimated path against the ground truth.
+
+## Land with landmarks
+### Environment
+Imagine that your robot is in an environment with multiple landmarks.
+
+### Assumptions
+1. The vision sensor correctly IDs the unique signature of a landmark.
+2. The coordinates of the landmark are perfectly determinable.
+3. The correspondance of the landmarks is not known, i.e., if a landmark A is observed from pose i, and pose j, then both of these observations will form 2 landmarks instead of a single landmark. The attempt here is to extract a single landmark from multiple readings.
+
+### How to achieve the goal[1]?
+To understand the implementation of goal[1], the robot is going to move around:
+### Algorithm
+1. Assume the robot at origin. The position of the landmarks as seen from origin are noted.
+2. At every `k`th instant, location of the landmarks are noted. These values are fed into a `.g2o` file for optimization.
+3. Execute the algorithm proposed in paper : `GraphSLAM Algorith implementation for solving simultaneous localization and mapping` by *Franco Andreas Curotto Molina* for unknown correspondance case.
